@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Github Issues Tracker | Login</title>
+    <link rel="shortcut icon" href="./assets/github-logo.png" type="image/x-icon">
+
+    <!-- Daisy Ui -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- Geist Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        * {
+            font-family: "Geist", sans-serif;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen w-[520px] max-w-lg bg-base-200 mx-auto shadow-md my-8">
+
+    <div class="logo w-40 mx-auto p-8 text-center">
+        <img class="" src="./assets/github-logo.png" alt="">
+    </div>
+    <div class=" text-center">
+        <h1 class="font-semibold text-2xl">GitHub Issues Tracker</h1>
+        <p>Sign in to manage your issues</p>
+    </div>
+    <!-- to make the input fields of form take the full width we can use w-full in the input classes -->
+    <div class="form pt-6 mx-auto w-[456px]">
+        <div>
+            <fieldset class="fieldset bg-base-200 border-base-300 rounded-box w-[456px] p-4">
+
+                <label class="label font-bold text-black">Username</label>
+                <input id="username" type="text" class="input w-full" placeholder="Enter Username" />
+                <p class="text-sm text-violet-600">Default: admin</p>
+
+                <label class="label font-bold text-black">Password</label>
+                <input id="password" type="password" class="input w-full" placeholder="Enter Password" />
+                <p class="text-sm text-violet-600">Default: admin123</p>
+
+                <button id="sign-in-btn" class="btn btn-primary mt-4">Sign In</button>
+            </fieldset>
+        </div>
+
+
+    </div>
+
+    <div class="flex items-center w-[456px] mx-auto">
+        <hr class="flex-1 border-t-1 border-gray-200">
+        <p class="px-4 text-sm text-gray-500">OR</p>
+        <hr class="flex-1 border-t-1 border-gray-200">
+    </div>
+
+    <script src="script/login.js"></script>
+
+</body>
+
+</html>
