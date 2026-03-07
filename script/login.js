@@ -5,11 +5,11 @@ document.getElementById("sign-in-btn").addEventListener("click", function() {
     console.log("Username:", username);
     console.log("Password:", password);
 
-    // 2. Validate the credentials (for demonstration, we use hardcoded values)
+    // 2. Validate the inputs
     if (username === "admin" && password === "admin123") {
         alert("Login successful!");
-        // Redirect to the issues page or dashboard
-        window.location.assign("/home.html"); // Change this to your actual issues page
+        // Redirect to the home page
+        window.location.assign("/home.html");
     } else {
         alert("Invalid username or password. Please try again.");
     }
