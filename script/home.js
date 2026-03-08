@@ -13,6 +13,7 @@ function toggleStyle(id) {
 
     // currentStatus = id;
 
+    
     fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues`)
         .then(res => res.json())
         .then(data => {
@@ -26,10 +27,13 @@ function toggleStyle(id) {
                 issues = issues.filter(issue => issue.status === "closed");
             }
 
+            document.getElementById("count").textContent = issues.length;
             console.log(issues);
             displayIssues(issues);
         });
 }
+
+toggleStyle("all-btn")
 
 const loadIssues = () => {
     fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
@@ -88,19 +92,7 @@ const displayIssues = (issues) => {
 }
 
 
-    // counting the number of issues in each status and showing the count of the selected status
-    const countIssues = (issues, status) => {   
-    const countElement = document.getElementById("count");
-    if (status === "all") {
-        countElement.innerText = issues.length;
-    } else if (status === "open") {
-        const openIssues = issues.filter(issue => issue.status === "open");
-        countElement.innerText = openIssues.length;
-    } else if (status === "closed") {
-        const closedIssues = issues.filter(issue => issue.status === "closed");
-        countElement.innerText = closedIssues.length;
-    }   
-}
+   
 
 // showing modal
 const issueContainer = document.getElementById("issues-container");
