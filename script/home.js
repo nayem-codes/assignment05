@@ -13,24 +13,22 @@ function toggleStyle(id) {
 
     // currentStatus = id;
 
-    if (id === "open-btn") {
-        fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues?status="open"`)
-            .then(response => response.json())
-            .then(data => {
-                console.log("Open issues:", data.data.status);
-                displayIssues(data.data);
-            });
-    } else if (id === "closed-btn") {
-        fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues?status="closed"`)
-            .then(response => response.json())
-            .then(data => {
-                console.log("Closed issues:", data.data);
-                displayIssues(data.data);
-            });
-    }
-    else {
-        loadIssues();
-    }
+    fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues`)
+        .then(res => res.json())
+        .then(data => {
+
+            let issues = data.data;
+
+            if (id === "open-btn") {
+                issues = issues.filter(issue => issue.status === "open");
+            } 
+            else if (id === "closed-btn") {
+                issues = issues.filter(issue => issue.status === "closed");
+            }
+
+            console.log(issues);
+            displayIssues(issues);
+        });
 }
 
 const loadIssues = () => {
