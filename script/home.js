@@ -55,9 +55,11 @@ const displayIssues = (issues) => {
         const issueElement = document.createElement("div");
         issueElement.classList.add("card", "bg-base-200", "shadow");
         issueElement.innerHTML = `
-            <div class="card-body">
+            <div class="card-body border-t-4 rounded-lg ${issue.status === "open" ? "border-green-500" : "border-violet-500"}">
+
+
                 <div class="flex justify-between items-center mb-2">
-                    
+
                     <div class="w-3 h-3 rounded-full ${issue.status === "open" ? "bg-green-500" : "bg-violet-500"}"></div>
 
                     <div class="w-20 p-2 flex items-center justify-center rounded-full ${issue.priority === "high" ? "bg-red-100 text-red-600" : issue.priority === "medium" ? "bg-yellow-100 text-yellow-600" : "bg-gray-300 text-gray-600"}">${issue.priority.toUpperCase()}</div>
@@ -108,5 +110,6 @@ const loadIssuesDetail = (id) => {
     console.log(url)
 
 }
+
 
 loadIssues();
