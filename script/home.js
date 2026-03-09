@@ -56,7 +56,7 @@ function toggleStyle(id) {
     selectedBtn.classList.add("btn-primary");
 
     // currentStatus = id;
-
+    manageSpinner(true)
     fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues`)
         .then(res => res.json())
         .then(data => {
@@ -72,7 +72,7 @@ function toggleStyle(id) {
 
             document.getElementById("count").textContent = issues.length;
             displayIssues(issues);
-
+            manageSpinner(false)
         });
 
 }
