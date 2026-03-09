@@ -54,7 +54,7 @@ function toggleStyle(id) {
     selectedBtn.classList.add("btn-primary");
 
     // currentStatus = id;
-    
+
     fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues`)
         .then(res => res.json())
         .then(data => {
@@ -72,7 +72,7 @@ function toggleStyle(id) {
             displayIssues(issues);
 
         });
-       
+
 }
 
 toggleStyle("all-btn")
@@ -174,6 +174,10 @@ const displayIssueDetail = (issue) => {
             return '<div class="badge badge-warning"><i class="fa-solid fa-life-ring"></i> HELP WANTED</div>';
         } else if (label === "enhancement") {
             return '<div class="badge badge-success"><i class="fa-solid fa-wand-magic-sparkles"></i>Enhancement</div>';
+        } else if (label === "good first issue") {
+            return '<div class="badge badge-success text-xs">good first issue</div>';
+        } else if (label === "documentation") {
+            return '<div class="badge badge-info">documentation</div>';
         } else {
             return '';
         }
