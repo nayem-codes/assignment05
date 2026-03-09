@@ -9,7 +9,7 @@ document.getElementById("sign-in-btn").addEventListener("click", function() {
     if (username === "admin" && password === "admin123") {
         alert("Login successful!");
         // Redirect to the home page
-        window.location.assign("/home.html");
+        window.location.assign("./home.html");
     } else {
         alert("Invalid username or password. Please try again.");
     }

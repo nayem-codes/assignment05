@@ -29,8 +29,8 @@
 </head>
 
 <body class="bg-base-200">
-    <header class="bg-white shadow-sm">
-        <div class="navbar sm:w-[95%] w-[1440px] mx-auto">
+    <header class="bg-white shadow-sm sm:w-[95%] w-[1440px] mx-auto">
+        <div class="navbar  ">
             <div class="flex-1">
                 <a class="btn btn-ghost text-xl"><img class="w-8 h-8" src="./assets/github-logo.png" alt=""> GitHub
                     Issues Tracker</a>
@@ -75,11 +75,13 @@
             </div>
         </div>
     </section>
-
-
+    
+    <section id="spinner" class="flex justify-center items-center py-10 hidden">
+        <span class="loading loading-spinner loading-xl"></span>
+    </section>
 
     <section class="w-[95%] max-w-7xl mx-auto m-0.5 bg-base-100 p-4 rounded-lg shadow">
-        <div id="issues-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div id="issues-container" class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
 
 
 
@@ -92,9 +94,9 @@
     <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
         <div class="modal-box">
             <div id="details-container" class="">
-                
 
-                
+
+
 
             </div>
 
