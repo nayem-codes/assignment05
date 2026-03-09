@@ -70,6 +70,7 @@ function toggleStyle(id) {
 
             document.getElementById("count").textContent = issues.length;
             displayIssues(issues);
+
         });
        
 }
@@ -87,6 +88,7 @@ const loadIssues = () => {
 }
 
 const displayIssues = (issues) => {
+    console.log(issues)
     // Get the container 
     const issueContainer = document.getElementById("issues-container");
     issueContainer.innerHTML = "";
