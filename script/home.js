@@ -13,7 +13,7 @@ function toggleStyle(id) {
 
     // currentStatus = id;
 
-    
+
     fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues`)
         .then(res => res.json())
         .then(data => {
@@ -22,7 +22,7 @@ function toggleStyle(id) {
 
             if (id === "open-btn") {
                 issues = issues.filter(issue => issue.status === "open");
-            } 
+            }
             else if (id === "closed-btn") {
                 issues = issues.filter(issue => issue.status === "closed");
             }
@@ -42,7 +42,7 @@ const loadIssues = () => {
 }
 
 const displayIssues = (issues) => {
-    
+
     // Get the container 
     const issueContainer = document.getElementById("issues-container");
     issueContainer.innerHTML = "";
@@ -55,7 +55,7 @@ const displayIssues = (issues) => {
         const issueElement = document.createElement("div");
         issueElement.classList.add("card", "bg-base-200", "shadow");
         issueElement.innerHTML = `
-            <div class="card-body border-t-4 rounded-lg ${issue.status === "open" ? "border-green-500" : "border-violet-500"}">
+            <div onclick="loadIssuesDetail(${issue.id})"  class="card-body border-t-4 rounded-lg ${issue.status === "open" ? "border-green-500" : "border-violet-500"}">
 
 
                 <div class="flex justify-between items-center mb-2">
@@ -94,21 +94,62 @@ const displayIssues = (issues) => {
 }
 
 
-   
+
 
 // showing modal
-const issueContainer = document.getElementById("issues-container");
 
-issueContainer.addEventListener('click', function(event){
-    const parentNode = event.target.closest('.card-body');
-    my_modal_5.showModal();
-    loadIssuesDetail();
-})
-
-const loadIssuesDetail = (id) => {
+const loadIssuesDetail = async (id) => {
     url = `https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`;
-    console.log(url)
+    console.log(url);
+    const res = await fetch(url)
+    const details = await res.json();
+    displayIssueDetail(details.data)
+}
 
+const displayIssueDetail = (issue) => {
+    console.log(issue)
+    const detailsBox = document.getElementById("details-container");
+    detailsBox.innerHTML = `
+    <h3 class="font-bold text-2xl">${issue.title}</h3>
+
+                <div class="flex gap-2 mt-2">
+                    <p class="badge ${issue.status === "open" ? "badge-success" : "badge-primary bg-violet-500"}">${issue.status}</p>
+                    <p class="text-gray-600">| Opened by ${issue.author}</p>
+                    <p class="text-gray-600">| ${new Date(issue.updatedAt).toLocaleDateString("en-US")}</p>
+                </div>
+
+                <div class="flex gap-2 mt-4">
+                   ${issue.labels && issue.labels.length > 0 ? issue.labels.map(label => {
+            if (label === "bug") {
+                return '<div class="badge badge-error"><i class="fa-solid fa-bug"></i> Bug</div>';
+            } else if (label === "help wanted") {
+                return '<div class="badge badge-warning"><i class="fa-solid fa-life-ring"></i> HELP WANTED</div>';
+            } else if (label === "enhancement") {
+                return '<div class="badge badge-success"><i class="fa-solid fa-wand-magic-sparkles"></i>Enhancement</div>';
+            } else {
+                return '';
+            }
+        }).join('') : ''}
+                </div>
+
+                <p class="text-gray-600 mt-5">${issue.description}</p>
+
+                <div class="mt-5 bg-base-200 p-2 rounded-lg shadow-sm flex justify-around">
+                    <div>
+                        <p class="text-gray-600">Assignee:</p>
+                        <p class="font-bold">${issue.assignee}</p>
+                    </div>
+
+                    <div>
+                        <p class="text-gray-600">Priority:</p>
+                        <p class=" h-7 p-2 flex items-center justify-center rounded-lg ${issue.priority === "high" ? "bg-red-100 text-red-600" : issue.priority === "medium" ? "bg-yellow-100 text-yellow-600" :  "bg-gray-300 text-gray-600"}">${issue.priority.toUpperCase()}</p>
+                    </div>
+                    
+    `
+
+
+
+    document.getElementById("my_modal_5").showModal();
 }
 
 const searchInput = document.getElementById("search-input");
