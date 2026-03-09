@@ -20,7 +20,7 @@ const searchInput = document.getElementById("search-input");
 const searchBtn = document.getElementById("search-btn");
 
 searchBtn.addEventListener("click", function () {
-
+    manageSpinner(true);
     const searchText = searchInput.value.trim();
 
     // if input is empty load all issues
@@ -40,7 +40,9 @@ searchBtn.addEventListener("click", function () {
 
             // display results
             displayIssues(issues);
+            manageSpinner(false);
         });
+        
 });
 
 
@@ -147,6 +149,7 @@ const displayIssues = (issues) => {
 
 // showing modal
 const loadIssuesDetail = async (id) => {
+     manageSpinner(true)
     url = `https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`;
     console.log(url);
     const res = await fetch(url)
@@ -200,6 +203,7 @@ const displayIssueDetail = (issue) => {
     `
 
     document.getElementById("my_modal_5").showModal();
+     manageSpinner(false)
 }
 
 
