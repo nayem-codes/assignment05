@@ -111,5 +111,31 @@ const loadIssuesDetail = (id) => {
 
 }
 
+const searchInput = document.getElementById("search-input");
+const searchBtn = document.getElementById("search-btn");
+
+searchBtn.addEventListener("click", function () {
+
+    const searchText = searchInput.value.trim();
+
+    // if input is empty load all issues
+    if (searchText === "") {
+        loadIssues();
+        return;
+    }
+
+    fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchText}`)
+        .then(res => res.json())
+        .then(data => {
+
+            const issues = data.data;
+
+            // update issue count
+            document.getElementById("count").textContent = issues.length;
+
+            // display results
+            displayIssues(issues);
+        });
+});
 
 loadIssues();
